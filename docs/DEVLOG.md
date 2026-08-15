@@ -23,3 +23,6 @@
 
 2 - Diagramme de Classe :
         Un problematique de comprendre et definir la relation de l'utilisateur avec las autres classes, probleme de separer Dette et commande chacun avec sa propre classe, l'erreur de relier approvisionnement et paiement qui signifie dans paiement on doit avoir Dette ou Commande et Approvisionnement ce qui crée un ambiguité 
+
+3 - Singleton Database et Automatique Fallback 
+        probleme d'implementer le code pour le Fallback Automatique et connaitre le role du fichier erp.db
