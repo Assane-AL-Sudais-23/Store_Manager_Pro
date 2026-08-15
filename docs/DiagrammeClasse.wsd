@@ -1,0 +1,141 @@
+@startuml Diagramme de Classe Store Manager 
+
+    class Client {
+        id
+        nom 
+        prenom
+        adresse
+        email 
+        limiteCredit
+    }
+
+    class Commande {
+        id
+        montant
+        montantVerse
+        Reglement
+    }
+
+    class LigneCommande {
+        id 
+        qte 
+        montant
+    }
+
+    class Approvisionnement {
+        id
+        refBL
+        qteAchat
+        qteReçu
+        montant
+    }
+
+    class Fournisseur {
+        id 
+        nom
+        telephone
+        adresse
+        email
+    }
+
+    class Paiement {
+        id 
+        montant 
+        modePaiement
+        date
+    }
+
+    class Dette {
+        id 
+        date 
+
+    }
+
+    class Article {
+        id 
+        libelle 
+        qteStock 
+        prixUnitaire
+    }
+
+    class ModePaiment {
+        id 
+        nom
+    }
+
+    class Reglement {
+        id 
+        nom 
+    }
+
+    class LigneApprovisionnement {
+        id 
+        qte 
+        montant 
+    }
+
+    class Admin {
+        id 
+        nom 
+        prenom 
+        email 
+        password 
+    }
+
+    class Role {
+        id 
+        nom
+    }
+
+    class UserVente {
+        id 
+        nom 
+        prenom 
+        email 
+        password
+    }
+
+    class UserStock {
+        id 
+        nom 
+        prenom 
+        email 
+        password
+    }
+
+    class UserInventaire {
+        id 
+        nom 
+        prenom 
+        email 
+        password
+    }
+
+    Client "1"--"0..*" Commande
+    Commande "1"--"0..*" LigneCommande
+    Commande "1"--"0..*" Paiement
+    Commande "0..*"--"1" Reglement
+    LigneCommande "0..*"--"1" Article
+    Client "1"--"0..*" Dette
+    Paiement "0..*"--"1" Dette
+    Paiement "0..*"--"1" ModePaiment
+    Fournisseur "1"--"0..*" Approvisionnement
+    Approvisionnement "1"--"0..*" LigneApprovisionnement
+    LigneApprovisionnement "0..*"--"1" Article
+    Approvisionnement "1"--"0..*" Paiement
+    Admin "0..*"--"1" Role
+    UserVente "0..*"--"1" Role
+    UserStock "0..*"--"1" Role
+    UserInventaire "0..*"--"1" Role
+    UserInventaire "1"--"0..*" Article
+    UserInventaire "1"--"0..*" Client
+    UserInventaire "1"--"0..*" Fournisseur
+    UserStock "1"--"0..*" Approvisionnement
+    UserVente "1"--"0..*" Commande
+    UserVente "1"--"0..*" Dette
+    Admin --|>UserStock
+    Admin --|>UserInventaire
+    Admin --|>UserVente
+  
+
+@enduml

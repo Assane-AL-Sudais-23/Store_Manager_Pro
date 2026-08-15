@@ -1,0 +1,23 @@
+@startuml Uses Cases Admin 
+    left to right direction 
+
+    actor "Stock" as Stk
+    
+    rectangle "Store Mananer Pro" {
+        Stk -->(Receptionner approvisionnement)
+        Stk -->(Enregistrer article)
+        Stk -->(Enregistrer client)
+        Stk -->(Enregistrer fournisseur)
+
+        (Receptionner approvisionnement)..>(Se connecter):<<include>>
+        (Enregistrer article)..>(Se connecter):<<include>>
+        (Enregistrer client)..>(Se connecter):<<include>>
+        (Enregistrer fournisseur)..>(Se connecter):<<include>>
+
+        (Receptionner approvisionnement)..>(lister approvisionnement):<<include>>
+        (Enregistrer article)<..(filtrer articles):<<extend>>
+        (Enregistrer client)..>(lister client):<<include>>
+
+    }
+
+@enduml

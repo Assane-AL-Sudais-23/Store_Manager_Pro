@@ -1,0 +1,25 @@
+@startuml Uses Cases Admin 
+    left to right direction 
+
+    actor "Vente" as Vt
+    
+    rectangle "Store Mananer Pro" {
+        Vt -->(enregistrer vente)
+        Vt -->(Rembourser dette)
+
+        (enregistrer vente)..>(Se connecter):<<include>>
+        (Rembourser dette)..>(Se connecter):<<include>>
+
+        (enregistrer vente) ..> (Selectionner Client):<<include>>
+        (enregistrer vente) ..> (Selectionner articles):<<include>>
+        (enregistrer vente) ..> (Selectionner mode Paiement):<<include>>
+        (enregistrer vente) ..> (lister vente):<<include>>
+        (Rembourser dette)..>(Selectionner mode Paiement):<<include>>
+        (Rembourser dette)..>(lister dettes):<<include>>
+        (Rembourser dette)<..(Rechercher client):<<extend>>
+
+    }
+
+
+
+@enduml

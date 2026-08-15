@@ -1,0 +1,46 @@
+@startuml Uses Cases Admin 
+    left to right direction 
+
+    actor "Admin Boutique" as Ad
+    
+    rectangle "Store Mananer Pro" {
+        Ad -->(enregistrer vente)
+        Ad -->(faire approvisionnement)
+        Ad -->(Rembourser dette)
+        Ad -->(Payer Fournisseur)
+        Ad -->(Receptionner approvisionnement)
+        Ad -->(Enregistrer article)
+        Ad -->(Enregistrer fournisseur)
+        Ad -->(Enregistrer client)
+
+        (enregistrer vente)..>(Se connecter):<<include>>
+        (faire approvisionnement)..>(Se connecter):<<include>>
+        (Rembourser dette)..>(Se connecter):<<include>>
+        (Payer Fournisseur)..>(Se connecter):<<include>>
+        (Receptionner approvisionnement)..>(Se connecter):<<include>>
+        (Enregistrer article)..>(Se connecter):<<include>>
+        (Enregistrer fournisseur)..>(Se connecter):<<include>>
+        (Enregistrer client)..>(Se connecter):<<include>>
+
+        (enregistrer vente) ..> (Selectionner Client):<<include>>
+        (enregistrer vente) ..> (Selectionner articles):<<include>>
+        (enregistrer vente) ..> (Selectionner mode Paiement):<<include>>
+        (faire approvisionnement)..>(Selectionner fournisseur):<<include>>
+        (faire approvisionnement)<..(lister ventes):<<extend>>
+        (faire approvisionnement)<..(lister dettes):<<extend>>
+        (faire approvisionnement)<..(lister articles):<<extend>>
+        (Rembourser dette)..>(Selectionner mode Paiement):<<include>>
+        (Rembourser dette)<..(Rechercher client):<<extend>>
+        (Rembourser dette)<..(lister approvisionnement):<<extend>>
+        (Payer Fournisseur)..>(Selectionner fournisseur):<<ilncude>>
+        (Receptionner approvisionnement)..>(lister approvisionnement):<<include>>
+        (Enregistrer article)<..(filtrer articles):<<extend>>
+        (Enregistrer article)..>(lister articles):<<include>>
+        (Enregistrer client)..>(lister client):<<include>>
+        (Enregistrer fournisseur)..>(lister fournisseur):<<include>>
+
+    }
+
+
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml Uses Cases Admin 
+    left to right direction 
+
+    actor "Admin Boutique" as Iv
+    
+    rectangle "Store Mananer Pro" {
+        Iv -->(Enregistrer article)
+        Iv -->(Enregistrer fournisseur)
+        Iv -->(Enregistrer client)
+
+        (Enregistrer article)..>(Se connecter):<<include>>
+        (Enregistrer fournisseur)..>(Se connecter):<<include>>
+        (Enregistrer client)..>(Se connecter):<<include>>
+
+        (Enregistrer article)<..(filtrer articles):<<extend>>
+        (Enregistrer article)..>(lister articles):<<include>>
+        (Enregistrer client)..>(lister client):<<include>>
+        (Enregistrer fournisseur)..>(lister fournisseur):<<include>>
+
+    }
+
+
+
+@enduml
