@@ -13,7 +13,7 @@
         id
         montant
         montantVerse
-        Reglement
+        dateCommande
     }
 
     class LigneCommande {
@@ -41,14 +41,13 @@
     class Paiement {
         id 
         montant 
-        modePaiement
         date
     }
 
     class Dette {
         id 
         date 
-
+        montantInitial
     }
 
     class Article {
@@ -58,7 +57,7 @@
         prixUnitaire
     }
 
-    class ModePaiment {
+    class ModePaiement {
         id 
         nom
     }
@@ -74,7 +73,7 @@
         montant 
     }
 
-    class Admin {
+    class Utilisateur {
         id 
         nom 
         prenom 
@@ -87,55 +86,21 @@
         nom
     }
 
-    class UserVente {
-        id 
-        nom 
-        prenom 
-        email 
-        password
-    }
-
-    class UserStock {
-        id 
-        nom 
-        prenom 
-        email 
-        password
-    }
-
-    class UserInventaire {
-        id 
-        nom 
-        prenom 
-        email 
-        password
-    }
 
     Client "1"--"0..*" Commande
     Commande "1"--"0..*" LigneCommande
-    Commande "1"--"0..*" Paiement
+    Commande "1"--"0..*" Dette
     Commande "0..*"--"1" Reglement
     LigneCommande "0..*"--"1" Article
-    Client "1"--"0..*" Dette
     Paiement "0..*"--"1" Dette
-    Paiement "0..*"--"1" ModePaiment
+    Paiement "0..*"--"1" ModePaiement
     Fournisseur "1"--"0..*" Approvisionnement
     Approvisionnement "1"--"0..*" LigneApprovisionnement
     LigneApprovisionnement "0..*"--"1" Article
-    Approvisionnement "1"--"0..*" Paiement
-    Admin "0..*"--"1" Role
-    UserVente "0..*"--"1" Role
-    UserStock "0..*"--"1" Role
-    UserInventaire "0..*"--"1" Role
-    UserInventaire "1"--"0..*" Article
-    UserInventaire "1"--"0..*" Client
-    UserInventaire "1"--"0..*" Fournisseur
-    UserStock "1"--"0..*" Approvisionnement
-    UserVente "1"--"0..*" Commande
-    UserVente "1"--"0..*" Dette
-    Admin --|>UserStock
-    Admin --|>UserInventaire
-    Admin --|>UserVente
-  
+    Utilisateur "0..*"--"1" Role
+    Utilisateur "1"--"0..*" Commande : enregistre
+    Utilisateur "1"--"0..*" Dette : gere
+    Utilisateur "1"--"0..*" Approvisionnement : gere
+    Utilisateur "1"--"0..*" Article : gere
 
 @enduml
