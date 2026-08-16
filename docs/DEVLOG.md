@@ -30,6 +30,7 @@
 3 - Singleton Database et Automatique Fallback 
         probleme d'implementer le code pour le Fallback Automatique et connaitre le role du fichier erp.db
 
+        Ajout des fonctions servant de faires des requetes preparer sur la base de donnees
 
 
 ### ☀️ [Samedi - Phase 2] : POO, Repositories & Ventes POS
@@ -37,12 +38,18 @@
 - **Heure de réalisation** : 
  Step 2.1 (09h00 - 11h00) : Entités POO Pure
         1 - Realisation des classe Entity et methodes metiers
+ Step 2.2 (11h00 - 13h00) : Repositories & SQL Sécurisé
+        2 - Realisation des classe Repository et implementation des requetes SQL preparés et securiser
 
 
 - **Ce qui a été fait** : 
         Creation des classes de descriptions avec leurs attributs et leurs methodes metiers avec la gestion des relations des classes entre eux
 
+        Creation des classes ArticleRepository.php, FournisseurRepository.php, ClientRepository.php avec insertion des methodes servant a recuperer des donnees dans la base postgres et sqlite.
+
 
 
 - **Difficultés / Obstacles** : 
         Probleme d'encapsulation au niveau des attributs, problematiques distinguer les methodes specifiques aux classe de description par rapport aux methodes des classe repositories
+
+        Problematique de comprehension et d'utlisation Database dans les repository, erreur de faires des attributs inutile dans les classes repositorys 
