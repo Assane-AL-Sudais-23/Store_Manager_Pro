@@ -95,6 +95,7 @@
     Paiement "0..*"--"1" Dette
     Paiement "0..*"--"1" ModePaiement
     Fournisseur "1"--"0..*" Approvisionnement
+    Fournisseur "1"--"0..*" Article
     Approvisionnement "1"--"0..*" LigneApprovisionnement
     LigneApprovisionnement "0..*"--"1" Article
     Utilisateur "0..*"--"1" Role

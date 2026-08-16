@@ -26,3 +26,19 @@
 
 3 - Singleton Database et Automatique Fallback 
         probleme d'implementer le code pour le Fallback Automatique et connaitre le role du fichier erp.db
+
+
+### ☀️ [Samedi - Phase 2] : POO, Repositories & Ventes POS
+
+- **Heure de réalisation** : 
+ Step 2.1 (09h00 - 11h00) : Entités POO Pure
+        1 - Realisation des classe Entity 
+
+
+- **Ce qui a été fait** : 
+        Creation des classes de descriptions avec leurs attributs et leurs methodes avec la gestion des relations des classes entre eux
+
+
+
+- **Difficultés / Obstacles** : 
+        Probleme d'encapsulation au niveau des attributs, problematiques distinguer les methodes specifiques aux classe de description par rapport aux methodes des classe repositories
