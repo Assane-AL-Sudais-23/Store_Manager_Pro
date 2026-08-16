@@ -51,7 +51,7 @@ CREATE TABLE utilisateurs (
     prenom VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role_id INT NOT NULL REFERENCES roles(id_role)
+    role_id INT NOT NULL REFERENCES roles(id_role) ON DELETE RESTRICT
 );
 
 CREATE TABLE approvisionnements (

@@ -14,8 +14,11 @@
 2 - Diagramme de Classe :
         Realisation des diagrammes de classe avec la gestion des cles etrangeres et la mise en place des contraintes
 
-    modification apporte : 
+    1 - modification apporte : 
         suppression des classes : UserVente, Admin , UserStock, UserInventaire. Detachement de la relation paiement et approvisionnement, suppresion de l'attribut reglement dans commande, ajout de l'attribut montantInitial sur Dette, relier Dette et paient et commande avec Dette enfin definir la classe user pour generaliser les acteurs et faire les relations avec les autres classes
+
+        2 - modification apportee: 
+                ajout des tables approviosionnement, ligneapprovisionnement et paiement, modification sur les tables ayant des clees etrangeres avec l'ajout des mode de suppresion cascade, ajout de la relation fournisseur et article
 
 **Difficultés / Obstacles** : 
 1 - Diagramme de Uses Cases:
@@ -28,15 +31,16 @@
         probleme d'implementer le code pour le Fallback Automatique et connaitre le role du fichier erp.db
 
 
+
 ### ☀️ [Samedi - Phase 2] : POO, Repositories & Ventes POS
 
 - **Heure de réalisation** : 
  Step 2.1 (09h00 - 11h00) : Entités POO Pure
-        1 - Realisation des classe Entity 
+        1 - Realisation des classe Entity et methodes metiers
 
 
 - **Ce qui a été fait** : 
-        Creation des classes de descriptions avec leurs attributs et leurs methodes avec la gestion des relations des classes entre eux
+        Creation des classes de descriptions avec leurs attributs et leurs methodes metiers avec la gestion des relations des classes entre eux
 
 
 
