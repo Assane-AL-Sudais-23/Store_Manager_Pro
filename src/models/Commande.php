@@ -27,7 +27,7 @@
         private ?Client $client = null;
         private ?Reglement $reglement = null;
 
-        public function __construct(?int $idCommande = null, float $montant = 0, float $montantVerse = 0, string $dateCommande = ''){
+        public function __construct(?int $idCommande = null, float $montant = 0.0, float $montantVerse = 0.0, string $dateCommande = ''){
             $this->idCommande = $idCommande;
             $this->setMontantCommande($montant);
             $this->setMontantVerse($montantVerse);
@@ -46,11 +46,11 @@
             return $this->montantVerse;
         }
 
-        public function getClient(): ?int {
+        public function getClient(): ?Client {
             return $this->client;
         }
 
-        public function getReglment(): ?int {
+        public function getReglment(): ?Reglement {
             return $this->reglement;
         }
 

@@ -21,7 +21,7 @@
         private string $email;
         private float $limiteCredit;
 
-        public function __construct(?int $idClient, string $nom, string $prenom,string $adresse, string $email, float $limiteCredit){
+        public function __construct(?int $idClient = null, string $nom = '', string $prenom = '',string $adresse = '', string $email = '', float $limiteCredit = 0.0){
             $this->idClient = $idClient;
             $this->nom = $nom;
             $this->prenom = $prenom;

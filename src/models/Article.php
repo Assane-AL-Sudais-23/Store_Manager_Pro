@@ -17,7 +17,7 @@
         private int $qteStock;
         private float $prixUnitaire;
 
-        public function __construct(?int $idArticle, string $libelle, int $qteStock, float $prixUnitaire){
+        public function __construct(?int $idArticle = null, string $libelle = '', int $qteStock = 0, float $prixUnitaire = 0.0){
             $this->idArticle = $idArticle;
             $this->libelle = $libelle;
             $this->setQteStock($qteStock);
