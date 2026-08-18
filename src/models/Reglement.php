@@ -1,8 +1,5 @@
 <?php
-
-    namespace Src\Models\Entity;
-
-    use Exception;
+    require_once "Dette.php";
 
     class Reglement {
         public const TYPE_CREDIT = 'Credit';
@@ -17,6 +14,7 @@
 
         private ?int $idReglement;
         private string $nom;
+        private array $commandes = [];
 
         public function __construct(string $nom = self::TYPE_COMPTANT,?int $idReglement = null){
             $this->idReglement = $idReglement;
@@ -31,6 +29,10 @@
             return $this->nom;
         }
 
+        public function getCommandes(): array {
+            return $this->commandes;
+        }
+
         public function setIdReglement(int $idReglement): void {
             $this->idReglement = $idReglement;
         }
@@ -40,5 +42,10 @@
                 throw new Exception("Le type de règlement '$nom' est invalide. ");
             }
             $this->nom = $nom;
+        }
+
+        public function setAddCommandes(Commande $commande) : void {
+            $this->commandes[] = $commande;
+            $commande->setReglement($this);
         }
     }

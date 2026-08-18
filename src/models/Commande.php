@@ -1,4 +1,8 @@
 <?php 
+    require_once "Client.php";
+    require_once "Reglement.php";
+    require_once "LigneCommande.php";
+    require_once "Dette.php";
 
     // CREATE TABLE commandes (
     //     id_commande SERIAL PRIMARY KEY,
@@ -11,21 +15,16 @@
     //     CONSTRAINT chk_montant_positif CHECK (montant >= 0 AND montantVerse >= 0)
     // );
 
-    namespace Src\Models\Entity;
-
-    use Exception;
-
-    use Src\Models\Entity\Reglement;
-    use Src\Models\Entity\Client;
-
     class Commande {
         private ?int $idCommande;
         private float $montant;
         private float $montantVerse;
         private string $dateCommande;
+        private array $ligneCommandes = [];
 
         private ?Client $client = null;
         private ?Reglement $reglement = null;
+        private ?Dette $dette = null;
 
         public function __construct(?int $idCommande = null, float $montant = 0.0, float $montantVerse = 0.0, string $dateCommande = ''){
             $this->idCommande = $idCommande;
@@ -58,20 +57,28 @@
             return $this->dateCommande;
         }
 
+        public function getLigneCommandes(): array {
+            return $this->ligneCommandes;
+        }
+
+        public function getDette(): ?Dette {
+            return $this->dette !== null ? $this->dette : null;
+        }
+
         public function setIdCommande(int $idCommande): void {
             $this->idCommande = $idCommande;
         }
 
-        public function setMontantCommande(int $montant): void {
+        private function setMontantCommande(int $montant): void {
             if($montant < 0){
-                throw new Exception("le montant doit etre positif");
+                $this->exception("le montant doit etre positif");
             }
             $this->montant = $montant;
         }
 
-        public function setMontantVerse(int $montantVerse): void {
+        private function setMontantVerse(int $montantVerse): void {
             if($montantVerse < 0){
-                throw new Exception("Le montant ne doit pas etre negatif");
+                $this->exception("Le montant ne doit pas etre negatif");
             }
             $this->montantVerse = $montantVerse;
         }
@@ -83,5 +90,17 @@
         public function setReglement(Reglement $reglement): void {
             $this->reglement = $reglement;
         }
-        
+
+        public function setAddLigneCommande(LigneCommande $ligneCommande): void {
+            $this->ligneCommandes[] = $ligneCommande;
+            $ligneCommande->setCommande($this);
+        }
+
+        public function setDette(Dette $dette): void {
+            $this->dette = $dette;
+        }
+
+        private function exception(string $message): void {
+            throw new Exception($message);
+        }
     }

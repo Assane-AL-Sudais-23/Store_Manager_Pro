@@ -1,4 +1,6 @@
 <?php
+    require_once "ModePaiement.php";
+    require_once "Dette.php";
 
     // CREATE TABLE paiements (
     //     id_paiement SERIAL PRIMARY KEY,
@@ -7,11 +9,6 @@
     //     mode_paiement_id INT NOT NULL REFERENCES modePaiements(id_modePaiement) ON DELETE RESTRICT,
     //     dette_id INT NOT NULL REFERENCES dettes(id_dette) ON DELETE CASCADE
     // );
-
-    namespace Src\Models\Entity;
-
-    use Exception;
-    use Src\Models\Entity\Dette;
 
     class Paiement {
         private ?int $idPaiement;

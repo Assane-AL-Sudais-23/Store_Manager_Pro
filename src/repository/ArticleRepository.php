@@ -1,12 +1,6 @@
 <?php 
-    namespace Src\Models\Repository;
-
-    use Exception;
-    use PDO ;
-
-    use Src\Models\Entity\Article;
-    use Src\Core\Database;
-
+    require_once dirname(__DIR__)."/Core/Database.php";
+    require_once dirname(__DIR__)."/models/Article.php";
 
     class ArticleRepository {
 

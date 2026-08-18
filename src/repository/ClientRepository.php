@@ -1,9 +1,7 @@
 <?php 
 
-    namespace Src\Models\Repository;
-
-    use Src\Models\Entity\Client;
-    use Src\Core\Database;
+    require_once dirname(__DIR__)."/Core/Database.php";
+    require_once dirname(__DIR__)."/models/Client.php";
 
 
     class ClientRepository {

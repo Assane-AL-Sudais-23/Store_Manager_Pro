@@ -1,4 +1,6 @@
 <?php 
+    require_once "Role.php";
+    
     // CREATE TABLE utilisateurs (
     //     id_user SERIAL PRIMARY KEY,
     //     nom VARCHAR(50) NOT NULL,
@@ -7,10 +9,6 @@
     //     password VARCHAR(255) NOT NULL,
     //     role_id INT NOT NULL REFERENCES roles(id_role) ON DELETE RESTRICT
     // );
-
-    namespace Src\Models\Entity;
-
-    use Exception;
 
     class Utilisateur {
         private ?int $idUser;

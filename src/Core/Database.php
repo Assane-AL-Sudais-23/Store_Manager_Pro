@@ -1,10 +1,5 @@
 <?php 
 
-    namespace src\Core;
-
-    use PDO;
-    use PDOException;
-
     class Database {
         private static ?PDO $connexion = null;
 
@@ -24,12 +19,10 @@
             return self::$connexion;
         }
 
-
-
         private static function connexionDB(): PDO {
             try {
                 $dsnPg = "pgsql:host=localhost;port=5432;dbname=store_manager_pro";
-                $userPg = "postgres";
+                $userPg = "assane";
                 $passPg = "postgres"; 
 
                 $pdo = new PDO($dsnPg, $userPg, $passPg, [
@@ -41,7 +34,7 @@
 
             } catch (PDOException $e) {
                 try {
-                    $dbPath = dirname(__DIR__) . 'erp.db';
+                    $dbPath = dirname(__DIR__) . '/erp.db';
                     $schemaSqlitePath = dirname(__DIR__) . '../docs/schema_sqlite.sql';
                     
                     $sqliteDB = !file_exists($dbPath);

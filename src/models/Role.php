@@ -4,10 +4,6 @@
     //     nom VARCHAR(50) NOT NULL UNIQUE
     // );
 
-    namespace Src\Models\Entity;
-
-    use Exception;
-
     class Role{
         public const ROLE_ADMIN = 'ADMIN';
         public const ROLE_BOUTIQUIER = 'BOUTIQUIER';

@@ -1,4 +1,5 @@
 <?php
+    require_once "Article.php";
 
     // CREATE TABLE fournisseurs (
     //     id_fournisseur SERIAL PRIMARY KEY,
@@ -8,8 +9,6 @@
     //     email VARCHAR(100) UNIQUE
     // );
 
-    namespace Src\Models\Entity;
-
     use Exception;
 
     class Fournisseur {
@@ -18,6 +17,7 @@
         private string $telephone;
         private ?string $adresse;
         private ?string $email;
+        private array $articles = [];
 
         public function __construct(string $nom = '',string $telephone = '',?string $adresse = null,?string $email = null,?int $idFournisseur = null) { 
             $this->idFournisseur = $idFournisseur;
@@ -47,13 +47,17 @@
             return $this->email;
         }
 
+        public function getArticles(): array {
+            return $this->articles;
+        }
+
         public function setIdFournisseur(int $idFournisseur): void {
             $this->idFournisseur = $idFournisseur;
         }
 
         public function setNom(string $nom): void {
             if (empty($nom)) {
-                throw new Exception("Le nom du fournisseur ne peut pas être vide.");
+                $this->exception("Le nom du fournisseur ne peut pas être vide.");
             }
             $this->nom = $nom;
         }
@@ -61,7 +65,7 @@
         public function setTelephone(string $telephone): void
         {
             if (empty($telephone)) {
-                throw new Exception("Le numéro de téléphone est obligatoire.");
+                $this->exception("Le numéro de téléphone est obligatoire.");
             }
             $this->telephone = $telephone;
         }
@@ -73,11 +77,20 @@
         public function setEmail(?string $email): void{
             if ($email !== null && trim($email) !== '') {
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    throw new Exception("L'adresse email '$email' n'est pas valide.");
+                    $this->exception("L'adresse email '$email' n'est pas valide.");
                 }
                 $this->email = trim($email);
             } else {
                 $this->email = null;
             }
+        }
+
+        public function setAddArticles(Article $article): void {
+            $this->articles[] = $article;
+            $article->setFournisseur($this);
+        }
+
+        private function exception(string $message): void {
+            throw new Exception($message);
         }
     }

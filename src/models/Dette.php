@@ -1,4 +1,6 @@
 <?php
+    require_once "Commande.php";
+    require_once "Paiement.php";
 
     // CREATE TABLE dettes (
     //     id_dette SERIAL PRIMARY KEY,
@@ -7,14 +9,12 @@
     //     commande_id INT NOT NULL REFERENCES commandes(id_commande) ON DELETE CASCADE
     // );
 
-    namespace Src\Models\Entity;
-
-    use Exception;
-
     class Dette {
         private ?int $idDette;
         private string $dateCreation;
         private float $montantInitial;
+        private array $paiements = [];
+
         private ?Commande $commande = null;
 
         public function __construct(float $montantInitial = 0.0,string $dateCreation = '', ?int $idDette = null, ?Commande $commande = null) {
@@ -44,6 +44,9 @@
             return $this->commande !== null ? $this->commande->getIdCommande() : null;
         }
 
+        public function getPaiements(): array {
+            return $this->paiements;
+        }
 
         public function setIdDette(int $idDette): void {
             $this->idDette = $idDette;
@@ -66,5 +69,10 @@
 
         public function setCommande(Commande $commande): void {
             $this->commande = $commande;
+        }
+
+        public function setPaiements(Paiement $paiement): void {
+            $this->paiements[] = $paiement;
+            $paiement->setDette($this);
         }
     }

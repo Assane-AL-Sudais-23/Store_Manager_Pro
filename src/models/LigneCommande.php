@@ -1,4 +1,6 @@
 <?php
+    require_once "Commande.php";
+    require_once "Article.php";
 
     // CREATE TABLE ligne_commandes (
     //     id_ligne_commande SERIAL PRIMARY KEY,
@@ -9,10 +11,6 @@
 
     //     CONSTRAINT uq_commande_article UNIQUE (commande_id, article_id)
     // );
-
-    namespace Src\Models\Entity;
-
-    use Exception;
 
     class LigneCommande {
         private ?int $idLigneCommande;
@@ -55,14 +53,14 @@
 
         public function setQte(int $qte): void {
             if ($qte <= 0) {
-                throw new Exception("La quantité doit être strictement supérieure à 0.");
+                $this->exception("La quantité doit être strictement supérieure à 0.");
             }
             $this->qte = $qte;
         }
 
         public function setMontant(float $montant): void {
             if ($montant < 0) {
-                throw new Exception("Le montant ne peut pas être négatif.");
+                $this->exception("Le montant ne peut pas être négatif.");
             }
             $this->montant = $montant;
         }
@@ -79,5 +77,9 @@
             if ($this->article !== null) {
                 $this->montant = $this->qte * $this->article->getPrixUnitaire();
             }
+        }
+
+        private function exception(string $message): void {
+            throw new Exception($message);
         }
     }

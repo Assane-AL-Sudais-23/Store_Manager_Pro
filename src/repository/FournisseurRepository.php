@@ -1,9 +1,6 @@
 <?php 
-
-    namespace Src\Models\Repository;
-
-    use Src\Models\Entity\Fournisseur;
-    use Src\Core\Database;
+    require_once dirname(__DIR__)."/Core/Database.php";
+    require_once dirname(__DIR__)."/models/Fournisseur.php";
 
     class FournisseurRepository {
 

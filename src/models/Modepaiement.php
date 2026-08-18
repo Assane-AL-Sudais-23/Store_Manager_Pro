@@ -1,17 +1,15 @@
 <?php
+    require_once "Paiement.php";
 
     // CREATE TABLE modePaiements (
     //     id_modePaiement SERIAL PRIMARY KEY,
     //     nom VARCHAR(50) NOT NULL UNIQUE
     // );
 
-    namespace Src\Models\Entity;
-
-    use Exception;
-
     class ModePaiement {
         private ?int $idModePaiement;
         private string $nom;
+        private array $paiements = [];
 
         public function __construct( string $nom = '', ?int $idModePaiement = null ) {
             $this->idModePaiement = $idModePaiement;
@@ -26,6 +24,10 @@
             return $this->nom;
         }
 
+        public function getPaiements(): array {
+            return $this->paiements;
+        }
+
         public function setIdModePaiement(int $idModePaiement): void {
             $this->idModePaiement = $idModePaiement;
         }
@@ -35,5 +37,10 @@
                 throw new Exception("Le nom du mode de paiement ne peut pas être vide.");
             }
             $this->nom = trim($nom);
+        }
+
+        public function setAddPaiement(Paiement $paiement): void {
+            $this->paiements[] = $paiement;
+            $paiement->setModePaiement($this);
         }
     }

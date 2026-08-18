@@ -1,11 +1,6 @@
 <?php
-
-    namespace Src\Models\Entity;
-
-    use Exception;
-
-    use Src\Models\Entity\Approvisionnement;
-    use Src\Models\Entity\Article;
+    require_once "Approvisionnement.php";
+    require_once "Article.php";
 
     class LigneApprovisionnement {
         private ?int $idLigneApprovisionnement;
@@ -48,14 +43,14 @@
 
         public function setQte(int $qte): void {
             if ($qte < 0) {
-                throw new Exception("La quantité ne peut pas être négative.");
+                $this->exception("La quantité ne peut pas être négative.");
             }
             $this->qte = $qte;
         }
 
         public function setMontant(float $montant): void {
             if ($montant < 0) {
-                throw new Exception("Le montant ne peut pas être négatif.");
+                $this->exception("Le montant ne peut pas être négatif.");
             }
             $this->montant = $montant;
         }
@@ -72,5 +67,9 @@
             if ($this->article !== null) {
                 $this->montant = $this->qte * $this->article->getPrixUnitaire();
             }
+        }
+
+        private function exception(string $message): void {
+            throw new Exception($message);
         }
     }

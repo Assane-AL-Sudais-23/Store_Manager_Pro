@@ -1,4 +1,6 @@
 <?php
+    require_once "Fournisseur.php";
+    require_once "LigneApprovisionnement.php";
 
     // CREATE TABLE approvisionnements (
     //     id_approvisionnement SERIAL PRIMARY KEY,
@@ -11,17 +13,14 @@
     //     CONSTRAINT chk_positif_valeur CHECK (qteAchat >= 0 AND qteRecu >= 0 AND montant >= 0)
     // );
 
-    namespace Src\Models\Entity;
-
-    use Exception;
-    use Src\Models\Entity\Fournisseur;
-
     class Approvisionnement {
         private ?int $idApprovisionnement;
         private string $refBL;
         private int $qteAchat;
         private int $qteRecu;
         private float $montant;
+        private array $ligneApprovisionnements = [];
+
         private ?Fournisseur $fournisseur = null;
 
         public function __construct(string $refBL = '',int $qteAchat = 0,int $qteRecu = 0,float $montant = 0.0, ?Fournisseur $fournisseur = null, ?int $idApprovisionnement = null) {
@@ -32,7 +31,6 @@
             $this->setMontant($montant);
             $this->fournisseur = $fournisseur;
         }
-
 
         public function getIdApprovisionnement(): ?int {
             return $this->idApprovisionnement;
@@ -58,39 +56,52 @@
             return $this->fournisseur;
         }
 
+        public function getLigneApprovisionnement(): array{
+            return $this->ligneApprovisionnements;
+        }
+
         public function setIdApprovisionnement(int $idApprovisionnement): void {
             $this->idApprovisionnement = $idApprovisionnement;
         }
 
-        public function setRefBL(string $refBL): void {
+        private function setRefBL(string $refBL): void {
             if (empty($refBL)) {
-                throw new Exception("La référence ne peut pas être vide.");
+                $this->exception("La référence ne peut pas être vide.");
             }
             $this->refBL = $refBL;
         }
 
-        public function setQteAchat(int $qteAchat): void {
+        private function setQteAchat(int $qteAchat): void {
             if ($qteAchat < 0) {
-                throw new Exception("La quantité d'achat ne peut pas être négative.");
+                $this->exception("La quantité d'achat ne peut pas être négative.");
             }
             $this->qteAchat = $qteAchat;
         }
 
-        public function setQteRecu(int $qteRecu): void {
+        private function setQteRecu(int $qteRecu): void {
             if ($qteRecu < 0) {
-                throw new Exception("La quantité reçue ne peut pas être négative.");
+                $this->exception("La quantité reçue ne peut pas être négative.");
             }
             $this->qteRecu = $qteRecu;
         }
 
-        public function setMontant(float $montant): void {
+        private function setMontant(float $montant): void {
             if ($montant < 0) {
-                throw new Exception("Le montant ne peut pas être négatif.");
+                $this->exception("Le montant ne peut pas être négatif.");
             }
             $this->montant = $montant;
         }
 
         public function setFournisseur(Fournisseur $fournisseur): void {
             $this->fournisseur = $fournisseur;
+        }
+
+        public function setAddLigneApprovisionnement(LigneApprovisionnement $ligne): void {
+            $this->ligneApprovisionnements[] = $ligne;
+            $ligne->setApprovisionnement($this);
+        }
+
+        private function exception(string $message): void {
+            throw new Exception($message);
         }
     }
